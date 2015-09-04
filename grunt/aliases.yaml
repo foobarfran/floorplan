@@ -1,0 +1,20 @@
+default:
+  - 'eslint'
+  - 'less'
+  - 'browserify:app'
+
+test:
+  - 'browserify:tests'
+  - 'connect'
+  - 'watch:tests'
+
+w:
+  - 'browserify:watch'
+  - 'watch:app'
+
+min:
+  - 'eslint'
+  - 'less'
+  - 'browserify:app'
+  - 'uglify:all'
+  - 'cssmin:all'
