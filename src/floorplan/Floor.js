@@ -5,7 +5,6 @@
  */
 
 import Base from "./Base";
-import Snap from "snapsvg";
 import Layers from "./Layers";
 
 export default class Floor extends Base {

@@ -31,7 +31,7 @@ describe("Floorplan", function(){
       name: "G"
     });
 
-    expect(floor.name).to.be.equal("G");
+    expect(floor.options.name).to.be.equal("G");
     expect(floor.layers).to.be.a('object');
     expect(floor.layers.length).to.be.equal(0);
 
@@ -39,7 +39,7 @@ describe("Floorplan", function(){
     expect(plan.floors.length).to.be.equal(1);
 
     let _floor = plan.floors.get("G");
-    expect(floor.name).to.be.equal(_floor.name);
+    expect(floor.options.name).to.be.equal(_floor.options.name);
   });
 
   it ('must allow to create Layers', () => {
@@ -53,7 +53,7 @@ describe("Floorplan", function(){
       image: 'test.png'
     });
 
-    expect(imgLayer.image).to.be.equal('test.png');
+    expect(imgLayer.options.image).to.be.equal('test.png');
 
     let plan = Floorplan();
     let floor = new Floorplan.Floor({

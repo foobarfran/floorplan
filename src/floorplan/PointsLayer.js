@@ -5,7 +5,6 @@
  */
 
 import Layer from "./Layer";
-import Snap from "snapsvg";
 import _ from "lodash";
 import shortid from "shortid";
 

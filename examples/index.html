@@ -19,6 +19,9 @@
   </head>
   <body>
     <div id="map"></div>
+
+    <script src="../node_modules/svg.js/dist/svg.js"></script>
+    <script src="../node_modules/svg.draggable.js/dist/svg.draggable.js"></script>
     <script src="../dist/floorplan.js"></script>
     <script>
 
@@ -32,7 +35,11 @@
 
       // Background Image
       var bgPlan = new Floorplan.ImageLayer({
-        image: "sample_floorplan.jpg"
+        image: "sample_floorplan.jpg",
+        attrs: {
+          width: 842,
+          height: 569
+        }
       });
 
       floor.layers.add("bg", bgPlan);
@@ -70,10 +77,10 @@
 
       setTimeout(function(){
         var p1 = pointsLayer.points.get("p1");
-        p1.animate({ cx: 350 }, 1000);
+        p1.animate(1000).attr({ cx: 350 });
 
         var c2 = cellsLayer.cells.get("c2");
-        c2.animate({ fill: "red", stroke: "red" }, 1000);
+        c2.animate(1000, '>').attr({ fill: "rgba(250, 0, 0, 0.2)", stroke: "red" });
       }, 2000);
 
     </script>

@@ -5,7 +5,6 @@
  */
 
 import Layer from "./Layer";
-import Snap from "snapsvg";
 
 export default class ImageLayer extends Layer {
 
@@ -31,8 +30,8 @@ ImageLayer.defaults = {
   attrs: {
     x: 0,
     y: 0,
-    width: 200,
-    height: 200,
+    width: "200",
+    height: "200",
     preserveAspectRatio: "xMinYMin slice"
   }
 };

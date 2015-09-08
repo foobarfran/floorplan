@@ -8,9 +8,12 @@ export default class Floorplan extends Base {
   constructor(options){
     super(options);
 
-    // avoid recursive on DOM element
-    let el = options.el;
-    delete options.el;
+    let el;
+    if (options && options.el){
+      // avoid recursive on DOM element
+      el = options.el;
+      delete options.el;
+    }
 
     this.defaults(options, Floorplan.defaults);
     this.options.el = el || document.body;
@@ -34,6 +37,6 @@ export default class Floorplan extends Base {
 
 Floorplan.defaults = {
   viewport: {
-    
+
   }
 };

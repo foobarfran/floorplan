@@ -5,7 +5,6 @@
  */
 
 import Layer from "./Layer";
-import Snap from "snapsvg";
 import _ from "lodash";
 import shortid from "shortid";
 
@@ -31,6 +30,8 @@ export default class CellsLayer extends Layer {
 
       c.id = c.id || shortid.generate();
       this.cells.set(c.id, r);
+
+      r.draggable();
     });
 
     this.container.attr(this.options.attrs);
@@ -46,9 +47,9 @@ CellsLayer.defaults = {
   },
   cells: [],
   cellAttrs: {
-    fill: "#bada55",
-    fillOpacity:0.1,
-    stroke: "#bada55",
+    fill: "rgba(186, 218, 85, 0.2)",
+    opacity:1,
+    stroke: "rgba(186, 218, 85, 1)",
     strokeWidth: 2
   }
 };

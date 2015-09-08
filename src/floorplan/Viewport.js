@@ -5,7 +5,6 @@
  */
 
 import Base from "./Base";
-import Snap from "snapsvg";
 
 export default class Viewport extends Base {
 
@@ -19,12 +18,11 @@ export default class Viewport extends Base {
   init() {
     let size = this.getParentSize();
 
-    this.container = new Snap(size.width, size.height);
-    this.options.el.appendChild(this.container.node);
+    this.container = SVG(this.options.el).size("100%", "100%");
 
-    this.container.attr({
-      viewBox: "0 0 " + size.width + " " + size.height
-    });
+    //this.container.attr({
+    //  viewBox: "0 0 " + size.width + " " + size.height
+    //});
 
     this.container.attr(this.options.attrs);
     this.container.addClass("viewport");

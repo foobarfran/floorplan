@@ -1,6 +1,8 @@
 (function(root) {
   require("babel/register");
 
+  //window.SVG = window.SVG || require("svg.js");
+
   var Entry = require("./floorplan");
 
   var Floorplan = function(options) {
