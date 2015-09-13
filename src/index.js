@@ -16,6 +16,7 @@
   Floorplan.ImageLayer = require("./floorplan/ImageLayer");
   Floorplan.CellsLayer = require("./floorplan/CellsLayer");
   Floorplan.PointsLayer = require("./floorplan/PointsLayer");
+  Floorplan.PathFindingLayer = require("./floorplan/PathFindingLayer");
 
   root.Floorplan = Floorplan;
 }(window || this));

@@ -43,15 +43,9 @@ export default class PointsLayer extends Layer {
 
 PointsLayer.defaults = {
   key: "position",
-  attrs: {
-
-  },
+  attrs: { },
   points: [],
   pointAttrs: {
-    r: 10,
-    fill: "#508CC5",
-    fillOpacity:0.1,
-    stroke: "#508CC5",
-    strokeWidth: 2
+    r: 10
   }
 };

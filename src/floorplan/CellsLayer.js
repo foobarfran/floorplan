@@ -42,14 +42,7 @@ export default class CellsLayer extends Layer {
 
 CellsLayer.defaults = {
   key: "cells",
-  attrs: {
-
-  },
+  attrs: { },
   cells: [],
-  cellAttrs: {
-    fill: "rgba(186, 218, 85, 0.2)",
-    opacity:1,
-    stroke: "rgba(186, 218, 85, 1)",
-    strokeWidth: 2
-  }
+  cellAttrs: { }
 };

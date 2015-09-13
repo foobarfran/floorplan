@@ -1,1 +1,52 @@
 @import "variables";
+
+
+
+.layer {
+
+  &.cells-layer {
+
+    rect {
+      fill: rgba(186, 218, 85, 0.2);
+      stroke: rgba(186, 218, 85, 1);
+      stroke-width: 2;
+    }
+  }
+
+  &.points-layer {
+
+    circle {
+      fill: rgba(0, 0, 250, 0.2);
+      stroke: rgba(0, 0, 250, 0.6);
+      stroke-width: 1;
+    }
+  }
+
+  &.pathfinding-layer {
+
+    rect {
+      fill: rgba(0, 0, 0, 0.2);
+      stroke: rgba(0, 0, 0, 0.6);
+      stroke-width: 1;
+    }
+
+    .block {
+      fill: rgba(250, 0, 0, 0.5);
+      stroke: rgba(250, 0, 0, 0.5);
+      stroke-width: 1;
+    }
+
+    .route {
+      fill: blue;
+    }
+
+    .marker-from {
+      fill: green;
+    }
+
+    .marker-to {
+      fill: yellow;
+    }
+
+  }
+}

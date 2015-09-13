@@ -33,17 +33,61 @@
       var floor = new Floorplan.Floor();
       plan.floors.add("1st", floor);
 
+      var imgW = 807, imgH = 522;
+/*
       // Background Image
       var bgPlan = new Floorplan.ImageLayer({
-        image: "sample_floorplan.jpg",
+        image: "sample2.png",
         attrs: {
-          width: 842,
-          height: 569
+          width: imgW,
+          height: imgH
         }
       });
-
       floor.layers.add("bg", bgPlan);
+*/
 
+      var baseMatrix = [];
+      var size = 20, rows = Math.floor(imgH/size), cols = Math.floor(imgW/size);
+      for(var y=0;y<rows;y++){
+        baseMatrix[y] = [];
+        for(var x=0;x<cols;x++){
+          baseMatrix[y][x] = 0;
+
+          if (y === 0 || x === 0 || y === rows-1 || x === cols - 1){ // bound walls
+            baseMatrix[y][x] = 1;
+          }
+        }
+      }
+
+      for(var y=1;y<16;y++){ // bedroom/ living
+        baseMatrix[y][16] = 1;
+      }
+
+      for(var x=1;x<13;x++){ // bedroom/ bathroom
+        baseMatrix[15][x] = 1;
+      }
+
+      for(var y=19;y<25;y++){ // bathroom/ living
+        baseMatrix[y][12] = 1;
+      }
+
+      for(var y=1;y<12;y++){ // living/ kitchen v
+        baseMatrix[y][30] = 1;
+      }
+
+      for(var x=30;x<39;x++){ // kitchen/ living h
+        baseMatrix[15][x] = 1;
+      }
+
+      // PathFinding on the floor
+      var pfLayer = new Floorplan.PathFindingLayer({
+        showGrid: true,
+        matrix: baseMatrix,
+        cellSize: 20,
+      });
+
+      floor.layers.add("pathfinding", pfLayer);
+/*
       // Cells on the floor
       var cellsLayer = new Floorplan.CellsLayer({
         cellAttrs: {
@@ -58,30 +102,39 @@
       });
 
       floor.layers.add("cells", cellsLayer);
-
+*/
       // Positions on the floor
       var pointsLayer = new Floorplan.PointsLayer({
         pointAttrs: {
           r: 12
         },
         points: [
-          { id: "p1", cx: 200, cy: 200, fill: "red", stroke: "red" },
-          { id: "p2", cx: 50, cy: 250 }
+          { id: "p1", cx: 190, cy: 190 },
+          //{ id: "p2", cx: 50, cy: 250 }
         ]
       });
 
       floor.layers.add("points", pointsLayer);
 
-
-      // Make some animations later
-
-      setTimeout(function(){
+      window.setPos = function(x, y){
         var p1 = pointsLayer.points.get("p1");
-        p1.animate(1000).attr({ cx: 350 });
+        p1.animate(500).attr({ cx: x, cy: y });
+      };
 
-        var c2 = cellsLayer.cells.get("c2");
-        c2.animate(1000, '>').attr({ fill: "rgba(250, 0, 0, 0.2)", stroke: "red" });
-      }, 2000);
+      window.setCell = function(cellId){
+        var cell = cellsLayer.cells.get(cellId);
+        var p1 = pointsLayer.points.get("p1");
+        p1.animate(500).attr({ cx: cell.cx(), cy: cell.cy() });
+      };
+
+      window.routeToPlace = function(place){
+
+      };
+
+      window.routeToPoint = function(x, y){
+        var p1 = pointsLayer.points.get("p1");
+        pfLayer.routeTo({ x: p1.cx(), y: p1.cy() }, { x: x, y: y });
+      };
 
     </script>
   </body>
