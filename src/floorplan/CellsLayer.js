@@ -31,7 +31,7 @@ export default class CellsLayer extends Layer {
       c.id = c.id || shortid.generate();
       this.cells.set(c.id, r);
 
-      r.draggable();
+      //r.draggable();
     });
 
     this.container.attr(this.options.attrs);

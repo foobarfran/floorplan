@@ -87,54 +87,104 @@
       });
 
       floor.layers.add("pathfinding", pfLayer);
-/*
+
       // Cells on the floor
       var cellsLayer = new Floorplan.CellsLayer({
         cellAttrs: {
-          width: 50,
-          height: 50
+          width: 70,
+          height: 70
         },
         cells: [
-          { id: "c1", x: 10, y: 10 },
-          { id: "c2", x: 100, y: 10 },
-          { id: "c3", x: 200, y: 10 }
+          { id: "c1", x: 240, y: 40 },
+          { id: "c2", x: 240, y: 120 },
+          { id: "c3", x: 240, y: 200 },
+
+          { id: "c4", x: 270, y: 330 },
+          { id: "c5", x: 350, y: 330 },
+          { id: "c6", x: 430, y: 330 },
+          { id: "c7", x: 510, y: 330 },
+
+          { id: "c8", x: 350, y: 410 },
+          { id: "c9", x: 430, y: 410 },
+          { id: "c10", x: 510, y: 410 },
+
+          { id: "c11", x: 430, y: 40 },
+          { id: "c12", x: 430, y: 120 },
+          { id: "c13", x: 430, y: 200 },
+
+          { id: "c14", x: 510, y: 40 },
+          { id: "c15", x: 510, y: 120 },
+          { id: "c16", x: 510, y: 200 },
+
+          { id: "c17", x: 660, y: 120 },
+          { id: "c18", x: 660, y: 200 },
         ]
       });
 
       floor.layers.add("cells", cellsLayer);
-*/
+
+      // Places on the floor
+      var placesLayer = new Floorplan.PlacesLayer({
+        places: [{
+          id: "bed",
+          type: "polygon",
+          points: [[30,30],[150,30],[30,150]],
+          attrs: { },
+        }, {
+          id: "sofa",
+          type: "rect",
+          attrs: { x: 350, y: 100, width: 50, height: 100 },
+        }, {
+          id: "table",
+          type: "rect",
+          attrs: { x: 620, y: 370, width: 120, height: 80 },
+        }, {
+          id: "juice",
+          type: "circle",
+          attrs: { cx: 700, cy: 60, r: 30 },
+        }]
+      });
+
+      placesLayer.onPlaceClick(function (place){
+        window.routeToPoint(place.cx(), place.cy());
+      });
+
+      floor.layers.add("places", placesLayer);
+
       // Positions on the floor
       var pointsLayer = new Floorplan.PointsLayer({
         pointAttrs: {
           r: 12
         },
         points: [
-          { id: "p1", cx: 190, cy: 190 },
-          //{ id: "p2", cx: 50, cy: 250 }
+          { id: "marker", cx: 190, cy: 190 }
         ]
       });
 
       floor.layers.add("points", pointsLayer);
 
       window.setPos = function(x, y){
-        var p1 = pointsLayer.points.get("p1");
-        p1.animate(500).attr({ cx: x, cy: y });
+        var marker = pointsLayer.points.get("marker");
+        marker.animate(500).attr({ cx: x, cy: y });
       };
 
       window.setCell = function(cellId){
         var cell = cellsLayer.cells.get(cellId);
-        var p1 = pointsLayer.points.get("p1");
-        p1.animate(500).attr({ cx: cell.cx(), cy: cell.cy() });
+        var marker = pointsLayer.points.get("marker");
+        marker.animate(500).attr({ cx: cell.cx(), cy: cell.cy() });
       };
 
-      window.routeToPlace = function(place){
-
+      window.routeToPlace = function(id){
+        var place = placesLayer.places.get(id);
+        window.routeToPoint(place.cx(), place.cy());
       };
 
       window.routeToPoint = function(x, y){
-        var p1 = pointsLayer.points.get("p1");
-        pfLayer.routeTo({ x: p1.cx(), y: p1.cy() }, { x: x, y: y });
+        var marker = pointsLayer.points.get("marker");
+        pfLayer.routeTo({ x: marker.cx(), y: marker.cy() }, { x: x, y: y });
       };
+
+      window.setCell("c1");
 
     </script>
   </body>

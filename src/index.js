@@ -12,10 +12,13 @@
   Floorplan.version = require("../package.json").version;
 
   Floorplan.Floor = require("./floorplan/Floor");
+
+  // Layers
   Floorplan.Layer = require("./floorplan/Layer");
   Floorplan.ImageLayer = require("./floorplan/ImageLayer");
   Floorplan.CellsLayer = require("./floorplan/CellsLayer");
   Floorplan.PointsLayer = require("./floorplan/PointsLayer");
+  Floorplan.PlacesLayer = require("./floorplan/PlacesLayer");
   Floorplan.PathFindingLayer = require("./floorplan/PathFindingLayer");
 
   root.Floorplan = Floorplan;

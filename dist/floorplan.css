@@ -1,12 +1,17 @@
 .layer.cells-layer rect {
   fill: rgba(186, 218, 85, 0.2);
-  stroke: #bada55;
+  stroke: rgba(186, 218, 85, 0.5);
   stroke-width: 2;
 }
 .layer.points-layer circle {
-  fill: rgba(0, 0, 250, 0.2);
-  stroke: rgba(0, 0, 250, 0.6);
-  stroke-width: 1;
+  fill: rgba(255, 0, 177, 0.9);
+  stroke: #ff00f7;
+  stroke-width: 3;
+}
+.layer.places-layer .place {
+  fill: #589aa9;
+  stroke: #aae9ec;
+  stroke-width: 2;
 }
 .layer.pathfinding-layer rect {
   fill: rgba(0, 0, 0, 0.2);

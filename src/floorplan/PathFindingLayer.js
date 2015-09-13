@@ -1,7 +1,7 @@
 
 /*
  * PathFindingLayer class
- * A Layer which contains a cellgrid for a floor.
+ * A Layer which contains a grid with walls for a pathfinding.
  */
 
 import Layer from "./Layer";
