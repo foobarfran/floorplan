@@ -5,6 +5,7 @@
   "author": "Pablo Novas <pjnovas@gmail.com>",
   "dependencies": {
     "events": "^1.0.2",
+    "hammerjs": "^2.0.4",
     "lodash": "^3.9.3",
     "pathfinding": "^0.4.17",
     "shortid": "^2.2.2",

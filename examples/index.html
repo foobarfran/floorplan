@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Floorplan Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../dist/floorplan.css">
     <style>
       body, #map {
@@ -175,11 +176,17 @@
       window.setCell = function(cellId){
         var cell = cellsLayer.cells.get(cellId);
         var marker = pointsLayer.points.get("marker");
-        marker.animate(500).attr({ cx: cell.cx(), cy: cell.cy() }).after(function() {
-          if (currentPlace){
-            routeToPlace(currentPlace.id);
-          }
-        });
+        marker.animate(500).attr({ cx: cell.cx(), cy: cell.cy() })
+          .during(function(){
+            plan.viewport.panTo({ x: marker.cx(), y: marker.cy()});
+          })
+          .after(function() {
+            if (currentPlace){
+              routeToPlace(currentPlace.id);
+            }
+
+            //plan.viewport.panTo({ x: marker.cx(), y: marker.cy()});
+          });
       };
 
       var currentPlace = null;
@@ -200,7 +207,7 @@
           if (c) {
             routePoints.push({ x: c.cx(), y: c.cy() });
           }
-          c.addClass('highlight');
+          //c.addClass('highlight');
         });
 
         if (routePoints.length){
