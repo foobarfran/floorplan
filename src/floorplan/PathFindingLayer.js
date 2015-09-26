@@ -20,6 +20,7 @@ export default class PathFindingLayer extends Layer {
 
     this.grid = new PF.Grid(this.options.matrix);
     this.path = [];
+    this.route = [];
   }
 
   onAttach(parent){
@@ -69,6 +70,21 @@ export default class PathFindingLayer extends Layer {
     return [x, y];
   }
 
+  getPointFromGrid(pos){
+    let size = this.options.cellSize;
+    let x = Math.floor(pos[0] * size);
+    let y = Math.floor(pos[1] * size);
+    return { x, y };
+  }
+
+  getCenter(pos){
+    let hSize = this.options.cellSize/2;
+    return {
+      x: pos.x + hSize,
+      y: pos.y + hSize
+    };
+  }
+
   clearPath(){
     if (this.options.showGrid){
       this.container.select("rect.route").removeClass("route");
@@ -79,15 +95,15 @@ export default class PathFindingLayer extends Layer {
 
   setPath(path){
     let ctn = this.container;
-    //this.route = [];
+    this.route = [];
 
     path.forEach( p => {
       if (this.options.showGrid){
         ctn.select("rect.pos-" + p[0] + "-" + p[1]).addClass("route");
       }
-    });
 
-    //this.route =
+      this.route.push(this.getPointFromGrid(p));
+    });
   }
 
   routeTo(from, to){
@@ -99,9 +115,10 @@ export default class PathFindingLayer extends Layer {
     this.clearPath();
     this.setPath(path);
 
-    // show markers
-    this.container.select("rect.pos-" + pa[0] + "-" + pa[1]).addClass("marker-from");
-    this.container.select("rect.pos-" + pb[0] + "-" + pb[1]).addClass("marker-to");
+    if (this.options.showGrid){ // show markers
+      this.container.select("rect.pos-" + pa[0] + "-" + pa[1]).addClass("marker-from");
+      this.container.select("rect.pos-" + pb[0] + "-" + pb[1]).addClass("marker-to");
+    }
   }
 
 }

@@ -108,13 +108,13 @@
           { id: "c9", x: 430, y: 410 },
           { id: "c10", x: 510, y: 410 },
 
-          { id: "c11", x: 430, y: 40 },
-          { id: "c12", x: 430, y: 120 },
-          { id: "c13", x: 430, y: 200 },
+          { id: "c11", x: 430, y: 60 },
+          { id: "c12", x: 430, y: 140 },
+          { id: "c13", x: 430, y: 220 },
 
-          { id: "c14", x: 510, y: 40 },
-          { id: "c15", x: 510, y: 120 },
-          { id: "c16", x: 510, y: 200 },
+          { id: "c14", x: 510, y: 60 },
+          { id: "c15", x: 510, y: 140 },
+          { id: "c16", x: 510, y: 220 },
 
           { id: "c17", x: 660, y: 120 },
           { id: "c18", x: 660, y: 200 },
@@ -146,10 +146,15 @@
       });
 
       placesLayer.onPlaceClick(function (place){
-        window.routeToPoint(place.cx(), place.cy());
+        //window.routeToPoint(place.cx(), place.cy());
+        window.routeToPlace(place.id);
       });
 
       floor.layers.add("places", placesLayer);
+
+      // Path for directions
+      var pathLayer = new Floorplan.PathLayer();
+      floor.layers.add("directions", pathLayer);
 
       // Positions on the floor
       var pointsLayer = new Floorplan.PointsLayer({
@@ -171,17 +176,37 @@
       window.setCell = function(cellId){
         var cell = cellsLayer.cells.get(cellId);
         var marker = pointsLayer.points.get("marker");
-        marker.animate(500).attr({ cx: cell.cx(), cy: cell.cy() });
+        marker.animate(500).attr({ cx: cell.cx(), cy: cell.cy() }).after(function() {
+          if (currentPlace){
+            routeToPlace(currentPlace.id);
+          }
+        });
       };
 
+      var currentPlace = null;
       window.routeToPlace = function(id){
-        var place = placesLayer.places.get(id);
-        window.routeToPoint(place.cx(), place.cy());
+        currentPlace = placesLayer.places.get(id);
+        window.routeToPoint(currentPlace.cx(), currentPlace.cy());
       };
 
       window.routeToPoint = function(x, y){
         var marker = pointsLayer.points.get("marker");
         pfLayer.routeTo({ x: marker.cx(), y: marker.cy() }, { x: x, y: y });
+
+        var cells = cellsLayer.findCellsNearToPath(pfLayer.route, pfLayer.options.cellSize);
+        var routePoints = [];
+
+        cells.forEach(function(cell) {
+          var c = cellsLayer.cells.get(cell.id());
+          if (c) {
+            routePoints.push({ x: c.cx(), y: c.cy() });
+          }
+          c.addClass('highlight');
+        });
+
+        if (routePoints.length){
+          pathLayer.setPath(routePoints);
+        }
       };
 
       window.setCell("c1");

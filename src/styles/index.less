@@ -10,6 +10,10 @@
       fill: rgba(186, 218, 85, 0.2);
       stroke: rgba(186, 218, 85, 0.5);
       stroke-width: 2;
+
+      &.highlight {
+        fill: rgba(255, 255, 85, 0.7);
+      }
     }
   }
 
@@ -56,6 +60,15 @@
     .marker-to {
       fill: yellow;
     }
+  }
 
+  &.path-layer {
+
+    path {
+      stroke: rgb(139, 47, 197);
+      stroke-width: 10px;
+      stroke-dasharray: 30;
+      stroke-linecap: butt;
+    }
   }
 }

@@ -3,6 +3,9 @@
   stroke: rgba(186, 218, 85, 0.5);
   stroke-width: 2;
 }
+.layer.cells-layer rect.highlight {
+  fill: rgba(255, 255, 85, 0.7);
+}
 .layer.points-layer circle {
   fill: rgba(255, 0, 177, 0.9);
   stroke: #ff00f7;
@@ -31,4 +34,10 @@
 }
 .layer.pathfinding-layer .marker-to {
   fill: yellow;
+}
+.layer.path-layer path {
+  stroke: #8b2fc5;
+  stroke-width: 10px;
+  stroke-dasharray: 30;
+  stroke-linecap: butt;
 }

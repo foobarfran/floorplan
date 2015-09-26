@@ -20,6 +20,7 @@
   Floorplan.PointsLayer = require("./floorplan/PointsLayer");
   Floorplan.PlacesLayer = require("./floorplan/PlacesLayer");
   Floorplan.PathFindingLayer = require("./floorplan/PathFindingLayer");
+  Floorplan.PathLayer = require("./floorplan/PathLayer");
 
   root.Floorplan = Floorplan;
 }(window || this));
