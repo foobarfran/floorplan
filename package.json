@@ -8,6 +8,7 @@
     "lodash": "^3.9.3",
     "pathfinding": "^0.4.17",
     "shortid": "^2.2.2",
+    "svg-pan-zoom": "ariutta/svg-pan-zoom",
     "svg.draggable.js": "^2.0.0",
     "svg.js": "^2.0.5"
   },
