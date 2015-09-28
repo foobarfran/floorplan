@@ -18,7 +18,9 @@ export default class PathFindingLayer extends Layer {
 
     this.cells = []; // only for visualization
 
-    this.grid = new PF.Grid(this.options.matrix);
+    this.grid = null;
+    this.initMatrix(this.options.matrix, this.options.cellSize);
+
     this.path = [];
     this.route = [];
   }
@@ -32,6 +34,32 @@ export default class PathFindingLayer extends Layer {
 
     this.container.attr(this.options.attrs);
     this.container.addClass("layer").addClass("pathfinding-layer");
+  }
+
+  initMatrix(matrix, cellSize){
+    if (!matrix || !matrix.length){
+      let mSize = this.options.matrixSize;
+
+      if (mSize.width && mSize.height){
+        mSize = {
+          rows: Math.floor(mSize.height/cellSize),
+          cols: Math.floor(mSize.width/cellSize)
+        };
+      }
+
+      for(var y=0; y<mSize.rows ;y++){
+        matrix[y] = [];
+        for(var x=0; x<mSize.cols; x++){
+          matrix[y][x] = 0;
+
+          if (y === 0 || x === 0 || y === mSize.rows-1 || x === mSize.cols - 1){ // bound walls
+            matrix[y][x] = 1;
+          }
+        }
+      }
+    }
+
+    this.grid = new PF.Grid(matrix);
   }
 
   createVisualGrid(){
@@ -128,6 +156,7 @@ PathFindingLayer.defaults = {
   showGrid: false,
   attrs: { },
   matrix: [],
+  matrixSize: { rows: 10, cols: 10 },
   cellSize: 20,
   walkableAttrs: { },
   nonWalkableAttrs: { }

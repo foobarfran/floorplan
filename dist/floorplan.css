@@ -18,12 +18,12 @@
 }
 .layer.pathfinding-layer rect {
   fill: rgba(0, 0, 0, 0.2);
-  stroke: rgba(0, 0, 0, 0.6);
+  stroke: rgba(70, 70, 70, 0.2);
   stroke-width: 1;
 }
 .layer.pathfinding-layer .block {
-  fill: rgba(250, 0, 0, 0.5);
-  stroke: rgba(250, 0, 0, 0.5);
+  fill: rgba(250, 0, 0, 0.3);
+  stroke: rgba(250, 0, 0, 0.3);
   stroke-width: 1;
 }
 .layer.pathfinding-layer .route {

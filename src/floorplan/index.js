@@ -18,6 +18,7 @@ export default class Floorplan extends Base {
     this.defaults(options, Floorplan.defaults);
     this.options.el = el || document.body;
 
+    this.mode = 'navigate';
     this.init();
   }
 
@@ -31,6 +32,20 @@ export default class Floorplan extends Base {
     this.floors.on("add", floor => {
       floor.onAttach(this.viewport.container);
     });
+  }
+
+  load(data) {
+    this.floors.load(data.floors);
+  }
+
+  getData(){
+    return {
+      floors: this.floors.getData()
+    };
+  }
+
+  setMode(mode){
+    this.mode = mode;
   }
 
 }

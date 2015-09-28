@@ -27,6 +27,10 @@ export default class Floor extends Base {
     this.container.addClass("floor");
   }
 
+  load(data){
+    this.layers.load(data.layers);
+  }
+
 }
 
 Floor.defaults = {

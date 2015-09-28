@@ -17,6 +17,7 @@ export default class PlacesLayer extends Layer {
     this.container = null;
 
     this.places = new Map();
+    this._onPlaceClick = function(){};
   }
 
   onAttach(parent){

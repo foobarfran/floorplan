@@ -1,0 +1,61 @@
+{
+  "floors": [{
+    "name": "1st",
+    "layers": [{
+      "class": "Floorplan.ImageLayer",
+      "name": "bg",
+      "image": "sample2.png",
+      "attrs": {
+        "width": 807,
+        "height": 522
+      }
+    }, {
+      "class": "Floorplan.PathFindingLayer",
+      "name": "pathfinding",
+      "showGrid": true,
+      "matrixSize": {
+        "width": 820,
+        "height": 530
+      },
+      "cellSize": 22
+    }, {
+      "class": "Floorplan.CellsLayer",
+      "name": "cells",
+      "cellAttrs": {
+        "width": 70,
+        "height": 70
+      },
+      "cells": [
+        { "id": "c1", "x": 240, "y": 40 }
+      ]
+    }, {
+      "class": "Floorplan.PlacesLayer",
+      "name": "places",
+      "places": [{
+        "id": "bed",
+        "type": "polygon",
+        "points": [[30,30],[150,30],[30,150]]
+      }, {
+        "id": "sofa",
+        "type": "rect",
+        "attrs": { "x": 350, "y": 100, "width": 50, "height": 100 }
+      }, {
+        "id": "juice",
+        "type": "circle",
+        "attrs": { "cx": 700, "cy": 60, "r": 30 }
+      }]
+    }, {
+      "class": "Floorplan.PathLayer",
+      "name": "directions"
+    }, {
+      "class": "Floorplan.PointsLayer",
+      "name": "points",
+      "pointAttrs": {
+        "r": 12
+      },
+      "points": [
+        { "id": "marker", "cx": 190, "cy": 190 }
+      ]
+    }]
+  }]
+}
